@@ -11,11 +11,10 @@ const typeDefs = gql`
     title: String!
     description: String!
     createdAt: String!
-    administratorCode: String!
+    url: String!
   }
   type Administrator {
     _id: ID!
-    code: String!
     name: String!
     email: String!
     password: String!
@@ -29,6 +28,13 @@ const typeDefs = gql`
 
   type Query {
     administrator: Administrator
+    forms: [Form]
+    submissions(formId: ID!): [Submission]
+  }
+
+  type Mutation {
+    addAdministrator(name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
   }
 `;
 

@@ -19,9 +19,16 @@ const formSchema = new Schema(
       default: Date.now,
       get: (date) => date.toISOString().split('T')[0],
     },
-    administratorCode: {
+    // administratorCode: {
+    //   type: String,
+    //   required: true,
+    // },
+    url: {
       type: String,
-      required: true,
+      unique: true,
+      default: function () {
+        return `https://crowdquery.com/forms/${this._id}`;
+      },
     },
   },
   {

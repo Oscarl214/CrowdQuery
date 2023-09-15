@@ -5,23 +5,23 @@ const bcrypt = require('bcrypt');
 
 const AdministratorSchema = new Schema(
   {
-    code: {
-      type: String,
-      unique: true,
-      default: function () {
-        const characters =
-          'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        const codelength = 5;
-        let code = '';
+    // code: {
+    //   type: String,
+    //   unique: true,
+    //   default: function () {
+    //     const characters =
+    //       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    //     const codelength = 5;
+    //     let code = '';
 
-        for (let i = 0; i < codelength; i++) {
-          const randomIndex = Math.floor(Math.random() * characters.length);
-          code += characters.charAt(randomIndex);
-        }
+    //     for (let i = 0; i < codelength; i++) {
+    //       const randomIndex = Math.floor(Math.random() * characters.length);
+    //       code += characters.charAt(randomIndex);
+    //     }
 
-        return code;
-      },
-    },
+    //     return code;
+    //   },
+    // },
     name: {
       type: String,
       required: true,
