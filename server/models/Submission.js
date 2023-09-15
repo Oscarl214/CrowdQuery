@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const { Schema, modal } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const submissionSchema = new Schema(
   {
@@ -10,10 +10,8 @@ const submissionSchema = new Schema(
       required: true,
     },
     content: {
-      message: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
     },
   },
   {
@@ -23,6 +21,6 @@ const submissionSchema = new Schema(
   }
 );
 
-const Submission = mongoose.modal('Submission', submissionSchema);
+const Submission = mongoose.model('Submission', submissionSchema);
 
 module.exports = Submission;

@@ -12,6 +12,7 @@ const typeDefs = gql`
     description: String!
     createdAt: String!
     url: String!
+    submissions: [Submission]
   }
   type Administrator {
     _id: ID!
@@ -35,6 +36,8 @@ const typeDefs = gql`
   type Mutation {
     addAdministrator(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    addForm(title: String!, description: String!): Form
+    addSubmission(formId: ID!, content: String!): Submission
   }
 `;
 

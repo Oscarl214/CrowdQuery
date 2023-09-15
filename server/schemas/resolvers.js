@@ -17,7 +17,11 @@ const resolvers = {
     },
     forms: async (parent, args, context) => {
       if (context.administrator) {
-        const forms = await Form.find().sort({ createdAt: -1 });
+        const forms = await Form.find()
+          .populate({
+            path: 'submissions',
+          })
+          .sort({ createdAt: -1 });
         return forms;
       }
       throw new AuthenticationError('Not logged in');
@@ -57,6 +61,53 @@ const resolvers = {
       const token = signToken(administrator);
 
       return { token, administrator };
+    },
+    addForm: async (parent, { title, description }, context) => {
+      if (context.administrator) {
+        const newForm = new Form({
+          title,
+          description,
+        });
+
+        const form = await newForm.save();
+
+        await Administrator.findByIdAndUpdate(
+          context.administrator._id,
+          { $push: { forms: form._id } },
+          { new: true }
+        );
+
+        return form;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    addSubmission: async (parent, { formId, content }) => {
+      try {
+        const form = await Form.findById(formId);
+
+        if (!form) {
+          throw new Error('Form not found');
+        }
+
+        if (!content || content.trim() === '') {
+          throw new Error('Content is required for a submission');
+        }
+
+        const newSubmission = new Submission({
+          formId: formId,
+          content: content,
+        });
+
+        const submission = await newSubmission.save();
+
+        form.submissions.push(submission._id);
+
+        await form.save();
+
+        return submission;
+      } catch (error) {
+        throw new Error('Failed to add Submission: ' + error.message);
+      }
     },
   },
 };

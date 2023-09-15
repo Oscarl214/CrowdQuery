@@ -30,6 +30,7 @@ const formSchema = new Schema(
         return `https://crowdquery.com/forms/${this._id}`;
       },
     },
+    submissions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Submission' }],
   },
   {
     toJSON: {
