@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from '@apollo/client';
 
 // export
 export const LOGIN = gql`
@@ -28,22 +28,22 @@ export const ADD_ADMINISTRATOR = gql`
 `;
 
 export const ADD_FORM = gql`
-    mutation addForm($title,$description){
-        addForm(title: $title, description:$description){
-            _id
-            title
-            description
-            createdAt
-            url
-        }
+  mutation addForm($title: String!, $description: String!) {
+    addForm(title: $title, description: $description) {
+      _id
+      title
+      description
+      createdAt
+      url
     }
+  }
 `;
 
 export const ADD_SUBMISSION = gql`
-    mutation addSubmission($formId:ID!, $content){
-        addSubmission(formId:$formId, content:$content){
-            _id
-            content
-        }
+  mutation addSubmission($formId: ID!, $content: String!) {
+    addSubmission(formId: $formId, content: $content) {
+      _id
+      content
     }
+  }
 `;
