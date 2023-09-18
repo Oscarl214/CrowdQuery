@@ -30,7 +30,9 @@ const typeDefs = gql`
   type Query {
     administrator: Administrator
     forms: [Form]
+    form(formID: ID!): Form
     submissions(formId: ID!): [Submission]
+    submission(SubmissionID: ID!): Submission
   }
 
   type Mutation {

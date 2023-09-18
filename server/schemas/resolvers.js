@@ -26,6 +26,13 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    form: async (parent, { formID }, context) => {
+      if (context.administrator) {
+        const form = await Form.findById(formID).populate('submissions');
+        return form;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
     submissions: async (parent, { formID }, context) => {
       if (context.administrator) {
         try {
@@ -36,6 +43,17 @@ const resolvers = {
         }
       }
       throw new AuthenticationError('Not logged in');
+    },
+    submission: async (parent, { SubmissionID }, context) => {
+      if (context.administrator) {
+        try {
+          const submission = await Submission.findById(SubmissionID);
+          return submission;
+        } catch (error) {
+          throw new Error('No Submission Found');
+        }
+      }
+      throw new AuthenticationError('Not Logged in');
     },
   },
   Mutation: {
