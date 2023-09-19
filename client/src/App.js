@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './maincss/main.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -36,7 +37,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
+        <div className="bg-background">
           <Routes>
             <Route path="/login" element={<Login />} />
           </Routes>

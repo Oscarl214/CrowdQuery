@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 
+import BGSVG from './BG_Login.svg';
+
+import { FaPeopleGroup } from 'react-icons/fa6';
+
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
@@ -30,68 +34,86 @@ function Login(props) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen background-darkBlue">
-      <h1 className="text-7xl font-bold text-center mb-6 color-yellow">
-        CROWD QUERY
-      </h1>
-      <h3 className="text-2xl text-center mb-6 text-white">
-        GET INSTANT FEEDBACK!
-      </h3>
+    <div
+      className=""
+      style={{
+        backgroundImage: `url(${BGSVG})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <div className="flex flex-col items-center justify-center h-screen ">
+        <h1 className="text-7xl text-primary font-custom font-bold text-center mb-6 color-yellow ">
+          CROWD QUERY
+        </h1>
+        <div className="">
+          <FaPeopleGroup className=" text-4xl md:text-8xl text-text animate-pulse" />
+        </div>
+        <h3 className="text-2xl text-center mb-6 text-text font-custom">
+          GET <a className="text-accent">INSTANT</a> FEEDBACK!
+        </h3>
 
-      <div className="container w-full max-w-md background-medBlue p-5 rounded-lg shrink-1">
-        <form onSubmit={handleFormSubmit} className="mt-4">
-          <div className="flex flex-col mb-4">
-            <input
-              placeholder="youremail@test.com"
-              required
-              name="email"
-              type="email"
-              id="email"
-              onChange={handleChange}
-              className="border border-blue-300 p-2 mt-2 rounded-md"
-            />
-            <label htmlFor="pwd" className="text-lg text-white">
-              Email
-            </label>
-          </div>
-          <div className="flex flex-col mb-4">
-            <input
-              placeholder="******"
-              required
-              name="password"
-              type="password"
-              id="pwd"
-              onChange={handleChange}
-              className="border border-blue-300 p-2 mt-2 rounded-md"
-            />
-            <label htmlFor="pwd" className="text-lg text-white">
-              Password
-            </label>
-          </div>
-          {error ? (
-            <div>
-              <p className="text-red-500">
-                The provided credentials are incorrect
-              </p>
-            </div>
-          ) : null}
-          <div className="flex justify-between items-center">
-            <button
-              type="submit"
-              className="background-yellow text-black py-2 px-4 rounded hover:background-darkBlue hover:text-white text-bold"
-            >
-              Sign In
-            </button>
-            <div>
-              <Link
-                to="/signup"
-                className="background-yellow text-black py-2 px-4 rounded hover:background-darkBlue hover:text-white ml-4"
+        <div className="container w-full max-w-md p-5 rounded-lg shrink-1 bg-secondary md:bg-secondary">
+          <form onSubmit={handleFormSubmit} className="mt-4">
+            <div className="flex flex-col mb-4">
+              <input
+                placeholder="youremail@test.com"
+                required
+                name="email"
+                type="email"
+                id="email"
+                onChange={handleChange}
+                className="border border-blue-300 p-2 mt-2 rounded-md"
+              />
+              <label
+                htmlFor="pwd"
+                className="text-lg text-text font-custom font-bold"
               >
-                Create Account
-              </Link>
+                Email
+              </label>
             </div>
-          </div>
-        </form>
+            <div className="flex flex-col mb-4">
+              <input
+                placeholder="******"
+                required
+                name="password"
+                type="password"
+                id="pwd"
+                onChange={handleChange}
+                className="border border-blue-300 p-2 mt-2 rounded-md"
+              />
+              <label
+                htmlFor="pwd"
+                className="text-lg text-text font-custom font-bold"
+              >
+                Password
+              </label>
+            </div>
+            {error ? (
+              <div>
+                <p className="text-red-500">
+                  The provided credentials are incorrect
+                </p>
+              </div>
+            ) : null}
+            <div className="flex justify-between items-center">
+              <button
+                type="submit"
+                className="bg-accent text-text py-2 px-4 rounded hover:bg-primary hover:text-accent text-bold font-custom"
+              >
+                Sign In
+              </button>
+              <div>
+                <Link
+                  to="/signup"
+                  className="bg-primary text-text py-2 px-4 rounded hover:bg-accent hover:text-text ml-4 font-custom"
+                >
+                  Create Account
+                </Link>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

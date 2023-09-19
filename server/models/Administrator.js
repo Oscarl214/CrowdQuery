@@ -15,6 +15,16 @@ const AdministratorSchema = new Schema(
       required: true,
       unique: true,
     },
+    googleId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    secret: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     password: {
       type: String,
       required: true,
