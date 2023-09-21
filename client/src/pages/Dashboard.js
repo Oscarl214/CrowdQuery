@@ -6,6 +6,7 @@ import Nav from '../components/NavBar';
 import DBSVG from './DB-BG.svg';
 import RecentForm from '../components/MostRecentForm';
 
+import { FaPeopleGroup } from 'react-icons/fa6';
 const DashBoard = () => {
   if (!Auth.loggedIn()) {
     return <Navigate to="/login" />;
@@ -18,10 +19,13 @@ const DashBoard = () => {
         backgroundImage: `url(${DBSVG})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        height: '100vh',
+        height: '150vh',
       }}
     >
-      <Nav />
+      <div className="flex justify-between items-center">
+        <Nav />
+        <FaPeopleGroup className=" text-4xl md:text-8xl text-text my-3 mr-4" />
+      </div>
       <RecentForm />
     </div>
   );

@@ -20,13 +20,13 @@ function Nav() {
     if (Auth.loggedIn()) {
       return (
         <div
-          className={`sm:bg-transparent h-full md:w-40  fixed ${
+          className={`sm:bg-transparent h-4/5 md:w-40  fixed ${
             isMobileMenuOpen ? 'hidden' : 'flex flex-col'
           }  md:bg-accent items-center justify-evenly`}
         >
           {/* ... your navigation items ... */}
           <ul className="space-y-20 ">
-            {location.pathname !== '/DashBoard' && (
+            {location.pathname !== '/' && (
               <li className="ml-4">
                 <Link
                   to="/"
@@ -36,6 +36,21 @@ function Nav() {
                 </Link>
                 <h2 className="font-custom text-lg text-text mr-1 font-bold">
                   DashBoard
+                </h2>
+              </li>
+            )}
+
+            {location.pathname !== '/Forms' && (
+              <li className="ml-4">
+                <Link
+                  to="/Forms"
+                  className="text-white hover:text-blue-300 px-2 py-1 rounded-lg"
+                >
+                  <FaFileWaveform className="text-4xl md:text-6xl" />
+                </Link>
+                <h2 className="font-custom text-lg text-text mr-1 font-bold">
+                  {' '}
+                  Forms
                 </h2>
               </li>
             )}
@@ -49,21 +64,6 @@ function Nav() {
                 </Link>
                 <h2 className="font-custom text-lg text-text mr-1 font-bold">
                   Profile
-                </h2>
-              </li>
-            )}
-
-            {location.pathname !== '/forms' && (
-              <li className="ml-4">
-                <Link
-                  to="/Forms"
-                  className="text-white hover:text-blue-300 px-2 py-1 rounded-lg"
-                >
-                  <FaFileWaveform className="text-4xl md:text-6xl" />
-                </Link>
-                <h2 className="font-custom text-lg text-text mr-1 font-bold">
-                  {' '}
-                  Forms
                 </h2>
               </li>
             )}
@@ -109,7 +109,7 @@ function Nav() {
   return (
     <header>
       <nav>
-        <div className="block sm:hidden">
+        <div className="block">
           <button onClick={handleMobileMenuToggle} className="text-white">
             <IoIosArrowDropdown className=" text-4xl md:text-8xl text-text animate-pulse  m-4" />
           </button>

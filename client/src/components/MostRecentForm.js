@@ -8,16 +8,18 @@ const RecentForm = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching posts: {error.message}</p>;
 
-  const forms = data?.forms || [];
+  const latestForm = data?.forms[0];
 
-  console.log(forms);
+  console.log(latestForm);
   return (
     <div className="p-20 md:ml-28 ">
-      <h1 className="text-text text-4xl font-bold mb-4">MOST RECENT FORMS</h1>
-      {forms.map((form) => (
+      <h2 className="text-text text-4xl font-bold mb-4">
+        MOST RECENT FORM & <a className="text-primary">SUBMISSIONS</a>
+      </h2>
+      {latestForm && (
         <div
-          key={form._id}
-          className="bg-white rounded-lg shadow-2xl md:flex mb-4 border-primary border-8"
+          key={latestForm._id}
+          className="bg-white rounded-lg shadow-2xl md:flex mb-4 border-primary border-6"
         >
           <img
             alt="none"
@@ -26,12 +28,13 @@ const RecentForm = () => {
           />
           <div className="p-6">
             <h2 className="font-bold text-xl md:text-3xl mb-2 text-accent">
-              {form.title}
+              {latestForm.title}
             </h2>
-            <p className="text-accent">{form.description}</p>
+            <p className="text-accent">{latestForm.description}</p>
+            <div className="bg-primary"></div>
           </div>
         </div>
-      ))}
+      )}
     </div>
   );
 };
