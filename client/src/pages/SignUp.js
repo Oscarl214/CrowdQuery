@@ -6,6 +6,7 @@ import { ADD_ADMINISTRATOR } from '../utils/mutations';
 
 import { FaPeopleGroup } from 'react-icons/fa6';
 import SUBGV from './Sign-Up-BG.svg';
+
 function Signup(props) {
   const [formState, setFormState] = useState({
     name: '',
@@ -13,7 +14,7 @@ function Signup(props) {
     password: '',
   });
 
-  const [addUser, { error, data }] = useMutation(ADD_ADMINISTRATOR);
+  const [addAdministrator, { error, data }] = useMutation(ADD_ADMINISTRATOR);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,13 +29,13 @@ function Signup(props) {
     console.log('form state', formState);
 
     try {
-      const { data } = await addUser({
+      const { data } = await addAdministrator({
         variables: {
           ...formState,
         },
       });
 
-      Auth.login(data.addUser.token);
+      Auth.login(data.addAdministrator.token);
       window.location.href = '/';
     } catch (e) {
       console.error(e);
@@ -91,6 +92,7 @@ function Signup(props) {
                 name="email"
                 type="email"
                 id="email"
+                value={formState.email}
                 onChange={handleChange}
                 className="border border-blue-300 p-2 mt-2 rounded-md"
               />
@@ -108,6 +110,7 @@ function Signup(props) {
                 name="password"
                 type="password"
                 id="pwd"
+                value={formState.password}
                 onChange={handleChange}
                 className="border border-blue-300 p-2 mt-2 rounded-md"
               />
@@ -121,7 +124,7 @@ function Signup(props) {
             {error ? (
               <div>
                 <p className="text-red-500">
-                  The provided credentials are incorrect
+                  User already exist, Please Sign In
                 </p>
               </div>
             ) : null}

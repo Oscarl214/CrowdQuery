@@ -39,7 +39,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="bg-background">
+        <div>
           <Routes>
             <Route path="/" element={<DashBoard />} />
             <Route path="/login" element={<Login />} />

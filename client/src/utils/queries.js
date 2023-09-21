@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from '@apollo/client';
 
 // export const
 
@@ -26,8 +26,9 @@ export const ADMINISTRATOR_QUERY = gql`
 
 export const FORMS_QUERY = gql`
   query getForms {
-    Form {
+    forms {
       _id
+      title
       description
       createdAt
       url
