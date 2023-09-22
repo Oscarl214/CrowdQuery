@@ -14,13 +14,8 @@ const DashBoard = () => {
 
   return (
     <div
-      className=""
-      style={{
-        backgroundImage: `url(${DBSVG})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        height: '150vh',
-      }}
+      className="min-h-screen bg-cover bg-no-repeat bg-center"
+      style={{ backgroundImage: `url(${DBSVG})` }}
     >
       <div className="flex justify-between items-center">
         <Nav />
