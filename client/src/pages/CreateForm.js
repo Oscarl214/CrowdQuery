@@ -7,6 +7,10 @@ import Nav from '../components/NavBar';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import DBSVG from './DB-BG.svg';
 import { Navbar } from 'flowbite-react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { FiCopy } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+
 const CreateForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -19,7 +23,6 @@ const CreateForm = () => {
       const response = await createForm({
         variables: { title, description },
       });
-      console.log('Response:', response);
 
       const newForm = response.data.addForm;
 
@@ -29,6 +32,12 @@ const CreateForm = () => {
     }
   };
 
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyToClipboard = () => {
+    setCopied(true);
+  };
+
   let displayContent;
 
   if (formUrl) {
@@ -36,11 +45,28 @@ const CreateForm = () => {
     displayContent = (
       <div>
         <Nav />
-        <div className="text-center mt-4">
-          Form URL:
-          <a href={formUrl} className="text-blue-500">
-            {formUrl}
-          </a>
+        <div class="flex flex-col justify-center items-center mx-auto max-w-screen-lg p-4 text-center font-custom bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-text dark:border-gray-700 overflow-y-auto">
+          <h5 class="mb-2 text-3xl font-bold text-accent ">
+            Your Form has been Created!
+          </h5>
+          <p class="mb-5 text-base text-black sm:text-lg ">
+            The link to your form is below. You can send it to others and start
+            collecting feedback!
+          </p>
+          <div className="text-center mt-4 font-custom flex">
+            <div className="flex items-center">
+              <p className="text-lg">{formUrl}</p>
+
+              <CopyToClipboard text={formUrl} onCopy={handleCopyToClipboard}>
+                <div className="ml-2 cursor-pointer">
+                  <FiCopy className="text-2xl text-accent" />
+                </div>
+              </CopyToClipboard>
+              {copied ? (
+                <span className="text-green text-bold text- lg">Copied</span>
+              ) : null}
+            </div>
+          </div>
         </div>
       </div>
     );

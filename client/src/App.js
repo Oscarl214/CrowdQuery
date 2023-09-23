@@ -17,6 +17,8 @@ import DashBoard from './pages/Dashboard';
 import Signup from './pages/SignUp';
 import Forms from './pages/Forms';
 import CreateForm from './pages/CreateForm';
+import SubmissionForm from './pages/SubmissionForm';
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -47,6 +49,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/Forms" element={<Forms />} />
             <Route path="/CreateForm" element={<CreateForm />} />
+            <Route path="/forms/:formId" element={<SubmissionForm />} />
           </Routes>
         </div>
       </Router>

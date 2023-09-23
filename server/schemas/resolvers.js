@@ -26,9 +26,9 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-    form: async (parent, { formID }, context) => {
+    form: async (parent, { formId }, context) => {
       if (context.administrator) {
-        const form = await Form.findById(formID).populate('submissions');
+        const form = await Form.findById(formId).populate('submissions');
         return form;
       }
       throw new AuthenticationError('Not logged in');

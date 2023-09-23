@@ -18,6 +18,7 @@ export const ADMINISTRATOR_QUERY = gql`
           _id
           formId
           content
+          createdAt
         }
       }
     }
@@ -36,14 +37,15 @@ export const FORMS_QUERY = gql`
         _id
         formId
         content
+        createdAt
       }
     }
   }
 `;
 
 export const FORM_QUERY = gql`
-  query getForm($formID: ID!) {
-    form(formID: $formID) {
+  query getForm($formId: ID!) {
+    form(formId: $formId) {
       _id
       title
       description
@@ -53,6 +55,7 @@ export const FORM_QUERY = gql`
         _id
         formId
         content
+        createdAt
       }
     }
   }
@@ -64,6 +67,7 @@ export const SUBMISSIONS_QUERY = gql`
       _id
       formId
       content
+      createdAt
     }
   }
 `;

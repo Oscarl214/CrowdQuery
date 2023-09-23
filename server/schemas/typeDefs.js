@@ -5,6 +5,7 @@ const typeDefs = gql`
     _id: ID!
     formId: ID!
     content: String!
+    createdAt: String!
   }
   type Form {
     _id: ID!
@@ -30,7 +31,7 @@ const typeDefs = gql`
   type Query {
     administrator: Administrator
     forms: [Form]
-    form(formID: ID!): Form
+    form(formId: ID!): Form
     submissions(formId: ID!): [Submission]
     submission(SubmissionID: ID!): Submission
   }
