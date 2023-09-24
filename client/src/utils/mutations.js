@@ -40,8 +40,8 @@ export const ADD_FORM = gql`
 `;
 
 export const ADD_SUBMISSION = gql`
-  mutation addSubmission($formId: ID!, $content: String!, $createdAt: String!) {
-    addSubmission(formId: $formId, content: $content, createdAt: $createdAt) {
+  mutation addSubmission($formId: ID!, $content: String!) {
+    addSubmission(formId: $formId, content: $content) {
       _id
       content
       createdAt

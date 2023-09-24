@@ -18,6 +18,8 @@ import Signup from './pages/SignUp';
 import Forms from './pages/Forms';
 import CreateForm from './pages/CreateForm';
 import SubmissionForm from './pages/SubmissionForm';
+import { AuthProvider } from './utils/AuthContext';
+import SpecificForm from './pages/SpecificForm';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,16 +44,22 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <Routes>
-            <Route path="/" element={<DashBoard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/Forms" element={<Forms />} />
-            <Route path="/CreateForm" element={<CreateForm />} />
-            <Route path="/forms/:formId" element={<SubmissionForm />} />
-          </Routes>
-        </div>
+        <AuthProvider>
+          <div>
+            <Routes>
+              <Route path="/" element={<DashBoard />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/Forms" element={<Forms />} />
+              <Route path="/CreateForm" element={<CreateForm />} />
+              <Route path="/forms/:formId" element={<SubmissionForm />} />
+              <Route
+                path="/forms/SpecificForm/:formId"
+                element={<SpecificForm />}
+              />
+            </Routes>
+          </div>
+        </AuthProvider>
       </Router>
     </ApolloProvider>
   );

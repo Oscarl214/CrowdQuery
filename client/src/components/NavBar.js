@@ -85,7 +85,7 @@ function Nav() {
     } else {
       return (
         <ul className="flex items-center">
-          <li className="ml-3">
+          <li className="ml-3 font-custom text-3xl">
             <Link
               to="/signup"
               className="text-white hover:text-blue-300 px-2 py-1 rounded-lg"
@@ -93,7 +93,7 @@ function Nav() {
               Signup
             </Link>
           </li>
-          <li className="ml-3">
+          <li className="ml-3  font-custom text-3xl">
             <Link
               to="/login"
               className="text-white hover:text-blue-300 px-2 py-1 rounded-lg"

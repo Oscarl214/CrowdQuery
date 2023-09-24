@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../utils/AuthContext';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { FORM_QUERY } from '../utils/queries';
 import { ADD_SUBMISSION } from '../utils/mutations';
-
 import SVG from './S-SVG.svg';
+import { Button } from 'flowbite-react';
+
 const SubmissionForm = () => {
   const { formId } = useParams();
-  console.log('formId:', formId);
+
+  const { loggedIn } = useContext(AuthContext);
 
   const { loading, error, data } = useQuery(FORM_QUERY, {
     variables: { formId },
@@ -19,11 +23,6 @@ const SubmissionForm = () => {
   const [title, setFormTitle] = useState('');
   const [description, setDescription] = useState('');
   const [submissionStatus, setSubmissionStatus] = useState(null);
-
-  console.log('formId:', formId);
-  console.log('Loading:', loading);
-  console.log('Error:', error);
-  console.log('Data:', data);
 
   useEffect(() => {
     if (data && data.form) {
@@ -44,10 +43,10 @@ const SubmissionForm = () => {
           content,
         },
       });
+
       setSubmissionStatus('success');
     } catch (error) {
       setSubmissionStatus('error');
-      console.error('Error submitting form:', error);
     }
   };
 
@@ -57,21 +56,31 @@ const SubmissionForm = () => {
     formContent = (
       <div>
         <h2 className="font-custom text-4xl text-primary">
-          Your Feedback was Submitted!
+          Your feedback was Submitted!
         </h2>
         <h3 className="font-custom text-4xl text-primary mt-5">
           Thanks for Sharing!
         </h3>
         <p className="font-custom text-2xl text-white mt-6">
-          Please re-use the link if you would like to add some more!
+          Feel free to revisit the link below whenever you have more feedback to
+          share!
         </p>
+        {data && data.form && (
+          <p key={data.form.id} className="text-lg text-text font-custom mt-4">
+            {data.form.url}
+          </p>
+        )}
       </div>
     );
   } else if (submissionStatus === 'error') {
     formContent = (
       <div>
-        <h2>Error submitting feedback.</h2>
-        <p>Please try again later.</p>
+        <h2 className="font-custom text-4xl text-primary">
+          Error submitting feedback.
+        </h2>
+        <p className="font-custom text-2xl text-white mt-6">
+          Please try again later.
+        </p>
       </div>
     );
   } else {
@@ -88,6 +97,8 @@ const SubmissionForm = () => {
               id="content"
               className="w-full border border-black my-5"
               placeholder="FeedBack Goes here..."
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
             />
 
             <button
@@ -107,6 +118,13 @@ const SubmissionForm = () => {
       className="min-h-screen flex flex-col justify-center items-center bg-cover bg-no-repeat bg-center"
       style={{ backgroundImage: `url(${SVG})` }}
     >
+      {loggedIn() ? (
+        <Link to="/forms">
+          <button className="text-white bg-gradient-to-r from-primary via-accent-500 to-accent hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300  shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-custom font-bold rounded-lg text-sm px-5 py-2.5 text-center mb-2 mr-6">
+            Go Back
+          </button>
+        </Link>
+      ) : null}
       <div className="w-full max-w-5xl p-4 text-center bg-background border border-gray-200 rounded-lg shadow sm:p-8">
         <div className="flex flex-col items-center">
           {' '}
@@ -121,54 +139,3 @@ const SubmissionForm = () => {
 };
 
 export default SubmissionForm;
-
-//   let formContent;
-
-//   if (loading) return <div>Loading...</div>;
-//   if (error) return <div>Error: {error.message}</div>;
-
-//   const form = data.form;
-//   console.log('Form Data:', form);
-
-//   return (
-//     <div
-//       className="min-h-screen flex flex-col justify-center items-center bg-cover bg-no-repeat bg-center"
-//       style={{ backgroundImage: `url(${SVG})` }}
-//     >
-//       <div className="flex-col align-top">
-//         <h5 className="mb-2 text-7xl font-bold text-gray-900 dark:text-white">
-//           {title}
-//         </h5>
-//         <p className="mb-5  text-text font-custom text-5xl m:text-lg">
-//           {description}
-//         </p>
-//       </div>
-{
-  /* <div className="w-full max-w-5xl p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8  dark:border-gray-700">
-  <div className="flex flex-col items-center">
-    <form onSubmit={handleSubmit} className="flex flex-col w-full">
-      <p className="font-custom text-lg">
-        Someone wants your Feedback! Your response is completely anonymous!
-      </p>
-      <label htmlFor="content "></label>
-      <textarea
-        id="content"
-        className="w-full border border-black my-5"
-        placeholder="FeedBack Goes here..."
-      />
-
-      <button
-        type="submit"
-        class="w-32 my-5 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2"
-      >
-        Submit
-      </button>
-    </form>
-  </div>
-</div>; */
-}
-//     </div>
-//   );
-// };
-
-// export default SubmissionForm;

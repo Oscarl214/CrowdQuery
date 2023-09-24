@@ -15,17 +15,36 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    // forms: async (parent, args, context) => {
+    //   if (context.administrator) {
+    //     const forms = await Form.find()
+    //       .populate({
+    //         path: 'submissions',
+    //       })
+    //       .sort({ createdAt: -1 });
+    //     return forms;
+    //   }
+    //   throw new AuthenticationError('Not logged in');
+    // },
     forms: async (parent, args, context) => {
       if (context.administrator) {
-        const forms = await Form.find()
+        const administratorId = context.administrator._id;
+
+        // Find forms associated with the administrator
+        const forms = await Form.find({
+          _id: { $in: context.administrator.forms },
+        })
           .populate({
             path: 'submissions',
           })
           .sort({ createdAt: -1 });
+
         return forms;
       }
+
       throw new AuthenticationError('Not logged in');
     },
+
     form: async (parent, { formId }, context) => {
       if (context.administrator) {
         const form = await Form.findById(formId).populate('submissions');

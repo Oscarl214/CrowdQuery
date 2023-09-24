@@ -20,14 +20,15 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.administrator = data;
+      console.log('Auth Middleware - Extracted Admin Data:', data);
     } catch {
       console.log('Invalid token');
     }
 
     return req;
   },
-  signToken: function ({ name, email, _id }) {
-    const payload = { name, email, _id };
+  signToken: function ({ name, email, _id, forms }) {
+    const payload = { name, email, _id, forms };
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },

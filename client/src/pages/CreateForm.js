@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
-
+import gql from 'graphql-tag';
 import { ADD_FORM } from '../utils/mutations';
 import Nav from '../components/NavBar';
 import { FaPeopleGroup } from 'react-icons/fa6';
@@ -10,12 +10,31 @@ import { Navbar } from 'flowbite-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiCopy } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { FORMS_QUERY } from '../utils/queries';
 
 const CreateForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const [createForm, { loading, data, error }] = useMutation(ADD_FORM);
+  // const [createForm] = useMutation(ADD_FORM, {
+  //   update(cache, { data: { addForm } }) {
+  //     // Read the cached data for the FORMS_QUERY
+  //     const { forms } = cache.readQuery({
+  //       query: FORMS_QUERY,
+  //     });
+  //     console.log('Forms in cache after mutation:', forms);
+  //     // Make sure we have forms and addForm
+  //     if (forms && addForm) {
+  //       cache.writeQuery({
+  //         query: FORMS_QUERY,
+  //         data: {
+  //           forms: [...forms, addForm],
+  //         },
+  //       });
+  //     }
+  //   },
+  // });
+
   const [formUrl, setFormUrl] = useState(null);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +60,6 @@ const CreateForm = () => {
   let displayContent;
 
   if (formUrl) {
-    // If formUrl is available, display the URL
     displayContent = (
       <div>
         <Nav />
@@ -66,6 +84,16 @@ const CreateForm = () => {
                 <span className="text-green text-bold text- lg">Copied</span>
               ) : null}
             </div>
+          </div>
+          <div>
+            <p className="font-custom text-2xl mt-5">
+              Preview the Form to see what Users will See!
+            </p>
+            <Link to={formUrl}>
+              <button className="text-white bg-gradient-to-r from-primary via-accent-500 to-accent hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300  shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-custom font-bold rounded-lg text-sm px-5 py-2.5 text-center mb-2 mr-6 mt-5">
+                Preview
+              </button>
+            </Link>
           </div>
         </div>
       </div>
