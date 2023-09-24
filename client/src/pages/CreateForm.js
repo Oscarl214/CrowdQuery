@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
+import { FORMS_QUERY } from '../utils/queries';
 import { ADD_FORM } from '../utils/mutations';
 import Nav from '../components/NavBar';
 import { FaPeopleGroup } from 'react-icons/fa6';
@@ -10,42 +11,34 @@ import { Navbar } from 'flowbite-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiCopy } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { FORMS_QUERY } from '../utils/queries';
 
 const CreateForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  // const [createForm] = useMutation(ADD_FORM, {
-  //   update(cache, { data: { addForm } }) {
-  //     // Read the cached data for the FORMS_QUERY
-  //     const { forms } = cache.readQuery({
-  //       query: FORMS_QUERY,
-  //     });
-  //     console.log('Forms in cache after mutation:', forms);
-  //     // Make sure we have forms and addForm
-  //     if (forms && addForm) {
-  //       cache.writeQuery({
-  //         query: FORMS_QUERY,
-  //         data: {
-  //           forms: [...forms, addForm],
-  //         },
-  //       });
-  //     }
-  //   },
-  // });
+  const [addForm, { error }] = useMutation(ADD_FORM, {
+    update(cache, { data: { addForm } }) {
+      const { forms } = cache.readQuery({ query: FORMS_QUERY });
+      cache.writeQuery({
+        query: FORMS_QUERY,
+        data: { forms: [addForm, ...forms] },
+      });
+    },
+  });
 
   const [formUrl, setFormUrl] = useState(null);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form Submitted');
     try {
-      const response = await createForm({
+      const response = await addForm({
         variables: { title, description },
       });
 
       const newForm = response.data.addForm;
 
       setFormUrl(newForm.url);
+      console.log('addForm data:', response.data.addForm);
     } catch (error) {
       console.log('Error creating Form', error);
     }

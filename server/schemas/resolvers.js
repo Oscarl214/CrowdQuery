@@ -28,8 +28,6 @@ const resolvers = {
     // },
     forms: async (parent, args, context) => {
       if (context.administrator) {
-        const administratorId = context.administrator._id;
-
         // Find forms associated with the administrator
         const forms = await Form.find({
           _id: { $in: context.administrator.forms },

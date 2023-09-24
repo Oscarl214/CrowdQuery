@@ -10,7 +10,9 @@ import { BsCalendarDate } from 'react-icons/bs';
 import { MdHttps } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 const ActiveForm = () => {
-  const { loading, data, error } = useQuery(FORMS_QUERY);
+  const { loading, data, error } = useQuery(FORMS_QUERY, {
+    fetchPolicy: 'cache-and-network',
+  });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching posts: {error.message}</p>;
 

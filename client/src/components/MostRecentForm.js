@@ -6,7 +6,10 @@ import { FORMS_QUERY } from '../utils/queries';
 import { LuArrowDownRightFromCircle } from 'react-icons/lu';
 import FormButton from './FormButton';
 const RecentForm = () => {
-  const { loading, data, error } = useQuery(FORMS_QUERY);
+  const { loading, data, error, refetch } = useQuery(FORMS_QUERY, {
+    fetchPolicy: 'cache-and-network',
+  });
+
   console.log('Data from forms query:', data);
 
   if (loading) return <p>Loading...</p>;

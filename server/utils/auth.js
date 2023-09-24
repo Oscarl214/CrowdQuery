@@ -20,7 +20,6 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.administrator = data;
-      console.log('Auth Middleware - Extracted Admin Data:', data);
     } catch {
       console.log('Invalid token');
     }
