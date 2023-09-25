@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useMutation, useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-import { FORMS_QUERY } from '../utils/queries';
+import { ADMINISTRATOR_QUERY, FORMS_QUERY } from '../utils/queries';
 import { ADD_FORM } from '../utils/mutations';
 import Nav from '../components/NavBar';
 import { FaPeopleGroup } from 'react-icons/fa6';
@@ -18,11 +18,22 @@ const CreateForm = () => {
 
   const [addForm, { error }] = useMutation(ADD_FORM, {
     update(cache, { data: { addForm } }) {
-      const { forms } = cache.readQuery({ query: FORMS_QUERY });
-      cache.writeQuery({
-        query: FORMS_QUERY,
-        data: { forms: [addForm, ...forms] },
-      });
+      try {
+        const { administrator } = cache.readQuery({
+          query: ADMINISTRATOR_QUERY,
+        });
+        cache.writeQuery({
+          query: ADMINISTRATOR_QUERY,
+          data: {
+            administrator: {
+              ...administrator,
+              forms: [...administrator.forms, addForm],
+            },
+          },
+        });
+      } catch (error) {
+        console.error('Error updating cache:', error);
+      }
     },
   });
 

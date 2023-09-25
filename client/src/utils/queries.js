@@ -4,7 +4,7 @@ import { gql } from '@apollo/client';
 
 export const ADMINISTRATOR_QUERY = gql`
   query getAdministrator {
-    Administrator {
+    administrator {
       _id
       name
       email

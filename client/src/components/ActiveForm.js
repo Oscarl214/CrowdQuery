@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useQuery } from '@apollo/client';
-import { FORMS_QUERY } from '../utils/queries';
+import { FORMS_QUERY, ADMINISTRATOR_QUERY } from '../utils/queries';
 
 import { BsBoxArrowInDown } from 'react-icons/bs';
 
@@ -10,13 +10,11 @@ import { BsCalendarDate } from 'react-icons/bs';
 import { MdHttps } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 const ActiveForm = () => {
-  const { loading, data, error } = useQuery(FORMS_QUERY, {
-    fetchPolicy: 'cache-and-network',
-  });
+  const { loading, data, error, refetch } = useQuery(ADMINISTRATOR_QUERY);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching posts: {error.message}</p>;
 
-  const activeForms = data?.forms || [];
+  const activeForms = data?.administrator?.forms;
 
   console.log(activeForms);
   return (

@@ -17,7 +17,25 @@ const SubmissionForm = () => {
     variables: { formId },
   });
 
-  const [addSubmission] = useMutation(ADD_SUBMISSION);
+  const [addSubmission] = useMutation(ADD_SUBMISSION, {
+    update(cache, { data: { addSubmission } }) {
+      const { form } = cache.readQuery({
+        query: FORM_QUERY,
+        variables: { formId },
+      });
+      cache.writeQuery({
+        query: FORM_QUERY,
+        variables: { formId },
+        data: {
+          form: {
+            ...form,
+            submissions: [...form.submissions, addSubmission],
+          },
+        },
+      });
+    },
+  });
+
   const [content, setContent] = useState('');
 
   const [title, setFormTitle] = useState('');

@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useQuery } from '@apollo/client';
-import { FORMS_QUERY } from '../utils/queries';
+import { ADMINISTRATOR_QUERY } from '../utils/queries';
 
 import { LuArrowDownRightFromCircle } from 'react-icons/lu';
 import FormButton from './FormButton';
+import { UserContext } from '../utils/adminContext';
 const RecentForm = () => {
-  const { loading, data, error, refetch } = useQuery(FORMS_QUERY, {
-    fetchPolicy: 'cache-and-network',
-  });
-
-  console.log('Data from forms query:', data);
+  const { loading, data, error, refetch } = useQuery(ADMINISTRATOR_QUERY);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching posts: {error.message}</p>;
 
-  const forms = data?.forms || [];
-  console.log(data);
+  const forms = data?.administrator?.forms || [];
 
-  console.log(forms);
+  const sortedForms = forms.slice().sort((a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+
+  console.log(
+    'First form createdAt:',
+    data?.administrator?.forms[0]?.createdAt
+  );
 
   let displayContent;
 
-  if (forms.length === 0) {
+  if (sortedForms.length === 0) {
     displayContent = (
       <div>
         <p className="text-text font-custom text-4xl">
@@ -34,7 +37,7 @@ const RecentForm = () => {
       </div>
     );
   } else {
-    displayContent = forms.map((form) => (
+    displayContent = sortedForms.map((form) => (
       <div
         key={form._id}
         className="bg-white rounded-lg shadow-2xl md:flex mb-4 border-primary border-6"

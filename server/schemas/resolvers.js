@@ -10,7 +10,12 @@ const resolvers = {
           context.administrator._id
         ).populate({
           path: 'forms',
+          populate: {
+            path: 'submissions',
+            model: 'Submission',
+          },
         });
+        administrator.forms.sort((a, b) => b.createdAt - a.createdAt);
         return administrator;
       }
       throw new AuthenticationError('Not logged in');
