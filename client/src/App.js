@@ -20,6 +20,7 @@ import CreateForm from './pages/CreateForm';
 import SubmissionForm from './pages/SubmissionForm';
 import { AuthProvider } from './utils/AuthContext';
 import SpecificForm from './pages/SpecificForm';
+import Rules from './pages/Rules';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -50,6 +51,7 @@ function App() {
               <Route path="/" element={<DashBoard />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/rules" element={<Rules />} />
               <Route path="/Forms" element={<Forms />} />
               <Route path="/CreateForm" element={<CreateForm />} />
               <Route path="/forms/:formId" element={<SubmissionForm />} />

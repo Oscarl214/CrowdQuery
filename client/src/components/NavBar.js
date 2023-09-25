@@ -101,6 +101,14 @@ function Nav() {
               Login
             </Link>
           </li>
+          <li className="ml-3  font-custom text-3xl">
+            <Link
+              to="/Rules"
+              className="text-white hover:text-blue-300 px-2 py-1 rounded-lg"
+            >
+              HowItWorks
+            </Link>
+          </li>
         </ul>
       );
     }

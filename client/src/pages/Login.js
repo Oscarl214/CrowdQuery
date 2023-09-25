@@ -7,6 +7,7 @@ import Auth from '../utils/auth';
 import BGSVG from './BG_Login.svg';
 
 import { FaPeopleGroup } from 'react-icons/fa6';
+import Nav from '../components/NavBar';
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -42,6 +43,7 @@ function Login(props) {
         backgroundRepeat: 'no-repeat',
       }}
     >
+      <Nav />
       <div className="flex flex-col items-center justify-center h-screen ">
         <h1 className="text-7xl text-primary font-custom font-bold text-center mb-6 color-yellow ">
           CROWD QUERY
