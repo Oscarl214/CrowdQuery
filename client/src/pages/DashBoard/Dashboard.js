@@ -12,7 +12,7 @@ import { FaPeopleGroup } from 'react-icons/fa6';
 const DashBoard = () => {
   //My Dashboard checks if user is not logged in than navigate to the login page
   if (!Auth.loggedIn()) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/signup" />;
   }
 
   return (

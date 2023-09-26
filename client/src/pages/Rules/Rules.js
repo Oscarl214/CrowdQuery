@@ -11,6 +11,7 @@ import {
   PiNumberSquareFiveLight,
   PiNumberSquareSixLight,
 } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
 
 const Rules = () => {
   //This page serves the purpose to explain to the user how the app works
@@ -43,7 +44,7 @@ const Rules = () => {
                       your form.
                     </p>
                     <img
-                      className="h-96 w-full rounded-lg object-cover object-center"
+                      className="h-96 w-full rounded-lg object-cover object-center "
                       src="./Step1.png"
                       alt="step one "
                     />
@@ -63,7 +64,7 @@ const Rules = () => {
                       networks, choice is yours.
                     </p>
                     <img
-                      className="h-96 w-full rounded-lg object-cover object-center"
+                      className="h-96 w-full rounded-lg object-cover object-center "
                       src="./Step2.png"
                       alt="step two "
                     />
@@ -82,7 +83,7 @@ const Rules = () => {
                       latest submits from all your boxes.
                     </p>
                     <img
-                      className="h-96 w-full rounded-lg object-cover object-center"
+                      className="h-96 w-full rounded-lg object-cover object-center  max-w"
                       src="./Step3.png"
                       alt="step three "
                     />
@@ -90,6 +91,16 @@ const Rules = () => {
                 </div>
               </li>
             </ul>
+          </div>
+          <div>
+            <h2 className="text-6xl text-white font-bold">
+              Create your first form!
+            </h2>
+            <Link to="/SignUp">
+              <button className="text-white bg-gradient-to-r from-primary via-accent-500 to-accent hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300  shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-custom font-bold rounded-lg text-sm px-5 py-2.5 text-center mb-2 mr-6 mt-8">
+                Sign Up
+              </button>
+            </Link>
           </div>
         </div>
       </div>

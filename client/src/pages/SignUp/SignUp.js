@@ -80,6 +80,16 @@ function Signup(props) {
           <p className="text-gray-300 text-3xl">
             or anyone else using an anonymous crowd query form.
           </p>
+          <div>
+            <h2 className="text-6xl text-black font-bold mt-6">
+              How Does it Work?
+            </h2>
+            <Link to="/Rules">
+              <button className="text-white bg-gradient-to-r from-primary via-accent-500 to-accent hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300  shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-custom font-bold rounded-lg text-sm px-5 py-2.5 text-center mb-2 mr-6 mt-8">
+                How It Works
+              </button>
+            </Link>
+          </div>
         </div>
         <div className="flex flex-col items-center justify-center h-screen ">
           <div className="">
