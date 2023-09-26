@@ -63,100 +63,119 @@ function Signup(props) {
       }}
     >
       <Nav />
-      <div className="flex flex-col items-center justify-center h-screen ">
-        <div className="">
-          <FaPeopleGroup className=" text-4xl md:text-8xl text-accent animate-pulse" />
+      <div className="flex flex-column justify-evenly items-center font-custom flex-wrap">
+        <div className="text-center mt-4">
+          <h1 className="text-7xl text-black font-bold">Free, easy,</h1>
+          <h1 className="text-7xl text-white font-bold">
+            {' '}
+            and <a className="text-black">anonymous</a> Feedback!
+          </h1>
+          <p className="text-gray-300 text-3xl mt-6 ">
+            Collect real and honest feedback from anyone.
+          </p>
+          <p className="text-gray-300 text-3xl">
+            Instantly start collecting information from employees, friends,
+            co-workers,
+          </p>
+          <p className="text-gray-300 text-3xl">
+            or anyone else using an anonymous crowd query form.
+          </p>
         </div>
-        <h1
-          className="text-7xl text-secondary
+        <div className="flex flex-col items-center justify-center h-screen ">
+          <div className="">
+            <FaPeopleGroup className=" text-4xl md:text-8xl text-accent animate-pulse" />
+          </div>
+          <h1
+            className="text-7xl text-secondary
          font-custom font-bold text-center mb-6 color-yellow "
-        >
-          SIGN UP
-        </h1>
-        <h3 className="text-2xl text-center mb-6 text-text font-custom">
-          Crowd Query Protects your Information!
-        </h3>
+          >
+            SIGN UP
+          </h1>
+          <h3 className="text-2xl text-center mb-6 text-text font-custom">
+            Crowd Query Protects your Information!
+          </h3>
 
-        <div className="container w-full max-w-md p-5 rounded-lg shrink-1 bg-secondary md:bg-secondary">
-          <form onSubmit={handleFormSubmit} className="mt-4">
-            <div className="flex flex-col mb-4">
-              <input
-                placeholder="Name"
-                required
-                name="name"
-                type="name"
-                id="name"
-                value={formState.name}
-                onChange={handleChange}
-                className="border border-blue-300 p-2 mt-2 rounded-md "
-              />
-              <label
-                className="text-white text-lg after:content-['*'] after:ml-0.5 after:text-red-500"
-                htmlFor="UserName"
-              >
-                Name
-              </label>
-            </div>
-            <div className="flex flex-col mb-4">
-              <input
-                placeholder="youremail@test.com"
-                required
-                name="email"
-                type="email"
-                id="email"
-                value={formState.email}
-                onChange={handleChange}
-                className="border border-blue-300 p-2 mt-2 rounded-md"
-              />
-              <label
-                htmlFor="pwd"
-                className="text-lg text-text font-custom font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
-              >
-                Email
-              </label>
-            </div>
-            <div className="flex flex-col mb-4">
-              <input
-                placeholder="******"
-                required
-                name="password"
-                type="password"
-                id="pwd"
-                value={formState.password}
-                onChange={handleChange}
-                className="border border-blue-300 p-2 mt-2 rounded-md"
-              />
-              <label
-                htmlFor="pwd"
-                className="text-lg text-text font-custom font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
-              >
-                Password
-              </label>
-            </div>
-            {error ? (
-              <div>
-                <p className="text-red-500">
-                  User already exist, Please Sign In
-                </p>
-              </div>
-            ) : null}
-            <div className="flex justify-between items-center">
-              <button
-                type="submit"
-                className="bg-accent text-text py-2 px-4 rounded hover:bg-primary hover:text-accent text-bold font-custom"
-              >
-                Sign Up
-              </button>
-              <div>
-                <Link
-                  to="/login"
-                  className="bg-primary text-text py-2 px-4 rounded hover:bg-accent hover:text-text ml-4 font-custom"
+          <div className="container w-full h-2/4 p-5 rounded-lg shrink-1 bg-secondary md:bg-secondary">
+            <form onSubmit={handleFormSubmit} className="mt-4">
+              <div className="flex flex-col mb-4 justify-center">
+                <input
+                  placeholder="Name"
+                  required
+                  name="name"
+                  type="name"
+                  id="name"
+                  value={formState.name}
+                  onChange={handleChange}
+                  className="border border-blue-300 p-2 mt-2 rounded-md "
+                />
+                <label
+                  className="text-white text-lg after:content-['*'] after:ml-0.5 after:text-red-500"
+                  htmlFor="UserName"
                 >
-                  Have An Account? Log In
-                </Link>
+                  Name
+                </label>
               </div>
-            </div>
-          </form>
+              <div className="flex flex-col mb-4">
+                <input
+                  placeholder="youremail@test.com"
+                  required
+                  name="email"
+                  type="email"
+                  id="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  className="border border-blue-300 p-2 mt-2 rounded-md"
+                />
+                <label
+                  htmlFor="pwd"
+                  className="text-lg text-text font-custom font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
+                >
+                  Email
+                </label>
+              </div>
+              <div className="flex flex-col mb-4">
+                <input
+                  placeholder="******"
+                  required
+                  name="password"
+                  type="password"
+                  id="pwd"
+                  value={formState.password}
+                  onChange={handleChange}
+                  className="border border-blue-300 p-2 mt-2 rounded-md"
+                />
+                <label
+                  htmlFor="pwd"
+                  className="text-lg text-text font-custom font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
+                >
+                  Password
+                </label>
+              </div>
+              {error ? (
+                <div>
+                  <p className="text-red-500">
+                    User already exist, Please Sign In
+                  </p>
+                </div>
+              ) : null}
+              <div className="flex justify-between items-center">
+                <button
+                  type="submit"
+                  className="bg-accent text-text py-2 px-4 rounded hover:bg-primary hover:text-accent text-bold font-custom"
+                >
+                  Sign Up
+                </button>
+                <div>
+                  <Link
+                    to="/login"
+                    className="bg-primary text-text py-2 px-4 rounded hover:bg-accent hover:text-text ml-4 font-custom"
+                  >
+                    Have An Account? Log In
+                  </Link>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
