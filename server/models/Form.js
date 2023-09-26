@@ -26,7 +26,7 @@ const formSchema = new Schema(
       type: String,
       unique: true,
       default: function () {
-        return `https://crowdquery-139561294e07.herokuapp.com/forms/${this._id}`;
+        return `/forms/${this._id}`;
       },
     },
     submissions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Submission' }],
