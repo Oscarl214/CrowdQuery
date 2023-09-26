@@ -33,7 +33,7 @@ class AuthService {
 
     window.location.assign('/');
   }
-
+  //comment
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
