@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+//My Administrator Modal with a name,email,password,
+//and forms field that references the Form Schema
 const AdministratorSchema = new Schema(
   {
     name: {
@@ -15,16 +17,6 @@ const AdministratorSchema = new Schema(
       required: true,
       unique: true,
     },
-    // googleId: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
-    // secret: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
     password: {
       type: String,
       required: true,
@@ -53,7 +45,7 @@ AdministratorSchema.methods.isCorrectPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll get postCount to let us know how many total posts a User has
+// when we query a administrator, we'll get formCount to let us know how many total forms a Administrator has
 AdministratorSchema.virtual('formCount').get(function () {
   return this.forms.length;
 });

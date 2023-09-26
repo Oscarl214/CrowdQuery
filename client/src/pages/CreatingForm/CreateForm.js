@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
-
 import { useMutation, useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
-import { ADMINISTRATOR_QUERY, FORMS_QUERY } from '../utils/queries';
-import { ADD_FORM } from '../utils/mutations';
-import Nav from '../components/NavBar';
+import { ADMINISTRATOR_QUERY, FORMS_QUERY } from '../../utils/queries';
+import { ADD_FORM } from '../../utils/mutations';
+import Nav from '../../components/NavBar';
 import { FaPeopleGroup } from 'react-icons/fa6';
-import DBSVG from './DB-BG.svg';
-import { Navbar } from 'flowbite-react';
+import DBSVG from '../DashBoard/DB-BG.svg';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiCopy } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { gsap } from 'gsap/';
 
+//My CreateForm Page that serves the purpose to populate when the user clicks on the createForm button
 const CreateForm = () => {
+  //Setting a state for both my title and description to be initially set to empty
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  //My green sock animation that I use to animate my form from the bottom of the page (y)
   useEffect(() => {
     gsap.fromTo(
       '.anim',
@@ -26,6 +26,13 @@ const CreateForm = () => {
     );
   }, []);
 
+  //Here I use my Add Form Mutation while I also go on to update the cache of my main query that populates the
+  //admins forms
+  //uses the update method and takes in the addform mutation that happens
+  //than reads the current cache "Admin_Query"
+  //than rewrites it and this time we pass in the new form to the admins forms array
+  //doing this updates my dashboard with the new form when the user navigates back to
+  // wherever I use the admin query like in my Dashboard,Forms Page
   const [addForm, { error }] = useMutation(ADD_FORM, {
     update(cache, { data: { addForm } }) {
       try {
@@ -47,7 +54,12 @@ const CreateForm = () => {
     },
   });
 
+  //I create an empty state for my form URL
   const [formUrl, setFormUrl] = useState(null);
+
+  //On my handleFormSubmit function I await my mutation where
+  //I pass in the values of set title and desc that happen in my form jsk onChange
+  //than with my new form data I set the state of my form url so I can display it
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log('Form Submitted');
@@ -65,12 +77,19 @@ const CreateForm = () => {
     }
   };
 
+  //create a copy state to initially false so that the user can copy the url
   const [copied, setCopied] = useState(false);
 
+  //function that changes when the user clicks on the copy icon
+  //which changes the state to true which executes the ternary set to display "copied" if the state is set to true
   const handleCopyToClipboard = () => {
     setCopied(true);
   };
 
+  //I conditionally render this component based on if my form url is posted
+  //If my form is posted than let the admin know the form has been created
+  //else
+  //Display the create form that executes the addForm mutation
   let displayContent;
 
   if (formUrl) {

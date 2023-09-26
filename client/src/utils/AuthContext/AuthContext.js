@@ -1,6 +1,8 @@
 import React, { createContext, useState } from 'react';
 import decode from 'jwt-decode';
 
+//Creating a Auth context so I can use my auth logic as I need in my
+//components
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -27,6 +29,7 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  //Pass in my functions so I can use them as I need to
   const loggedIn = () => {
     const token = localStorage.getItem('id_token');
     return !!token; // Adjust this logic according to your requirements
@@ -40,7 +43,8 @@ const AuthProvider = ({ children }) => {
         loggedIn,
       }}
     >
-      {children}
+      {children}{' '}
+      {/** The rest of my application will have access to the auth functions */}
     </AuthContext.Provider>
   );
 };

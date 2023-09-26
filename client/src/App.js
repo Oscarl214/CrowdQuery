@@ -12,20 +12,22 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 //Need to import my Pages
-import Login from './pages/Login';
-import DashBoard from './pages/Dashboard';
-import Signup from './pages/SignUp';
-import Forms from './pages/Forms';
-import CreateForm from './pages/CreateForm';
-import SubmissionForm from './pages/SubmissionForm';
-import { AuthProvider } from './utils/AuthContext';
-import SpecificForm from './pages/SpecificForm';
-import Rules from './pages/Rules';
+import Login from './pages/Login/Login';
+import DashBoard from './pages/DashBoard/Dashboard';
+import Signup from './pages/SignUp/SignUp';
+import Forms from './pages/ActiveForm/Forms';
+import CreateForm from './pages/CreatingForm/CreateForm';
+import SubmissionForm from './pages/SubmissionForm/SubmissionForm';
+import { AuthProvider } from './utils/AuthContext/AuthContext';
+import SpecificForm from './components/SpecificForm';
+import Rules from './pages/Rules/Rules';
 
+//httpLink: Creating an HTTP link to the GraphQL server endpoint (/graphql).
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-
+// /authLink: Creating an authentication link using the token stored
+// in localStorage to include the token in the request headers.
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -36,6 +38,8 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+//client: Creating an Apollo client instance
+// with the configured authentication link and an in-memory cache.
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
@@ -43,6 +47,10 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    //ApolloProvider provides the Apollo client instance to the whole app
+    //Second is the Router from React-dom that lets me route my pages accordingly
+    //Thirdly, wrapping the application with the AuthProvider to provide authentication context to the app and its children.
+    // Each Route is associated with a path and a corresponding component to be rendered when the path matches.
     <ApolloProvider client={client}>
       <Router>
         <AuthProvider>

@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 
+//Setting up the users Context
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {

@@ -5,7 +5,7 @@ import { ADMINISTRATOR_QUERY } from '../utils/queries';
 
 import { LuArrowDownRightFromCircle } from 'react-icons/lu';
 import FormButton from './FormButton';
-import { UserContext } from '../utils/adminContext';
+import { UserContext } from '../utils/AuthContext/adminContext';
 import { gsap } from 'gsap';
 
 const RecentForm = () => {

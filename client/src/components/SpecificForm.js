@@ -4,14 +4,16 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery, useReadQuery } from '@apollo/client';
 import { ADMINISTRATOR_QUERY, FORM_QUERY } from '../utils/queries';
-import Nav from '../components/NavBar';
+import Nav from './NavBar';
 
-import DBSVG from './DB-BG.svg';
+import DBSVG from '../pages/DashBoard/DB-BG.svg';
 import { BsBoxArrowInDown } from 'react-icons/bs';
 import { REMOVE_FORM } from '../utils/mutations';
 
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import FormButton from '../components/FormButton';
+import FormButton from './FormButton';
+
+import { MdHttps } from 'react-icons/md';
 
 const SpecificForm = () => {
   const { formId } = useParams();
@@ -89,7 +91,7 @@ const SpecificForm = () => {
     );
   }
 
-  const { title, createdAt, url, submissions } = data.form;
+  const { title, description, createdAt, url, submissions } = data.form;
 
   return (
     <div
@@ -105,10 +107,19 @@ const SpecificForm = () => {
         <div className="p-20 md:ml-28">
           <div className="bg-white rounded-lg shadow-2xl md:flex mb-4 border-primary border-6">
             <div className="p-6 flex-grow">
-              <h2 className="font-bold text-lxl md:text-3xl mb-2 text-accent">
-                {title}
+              <h2 className="font-bold text-5xl mb-2 text-accent">
+                <a className="text-black">Title:</a> {title}
               </h2>
-              <p className="text-accent">{createdAt}</p>
+              <h3 className="font-bold text-2xl mb-2 text-accent">
+                <a className="text-black">Description:</a> {description}
+              </h3>
+              <p className="flex items-center">
+                <MdHttps className="mr-2 text-xl" />
+                {url}
+              </p>
+              <p className="text-accent">
+                <a className="text-black text-lg">Created On</a>: {createdAt}
+              </p>
               {submissions.map((submission) => (
                 <div
                   key={submission._id}
@@ -116,7 +127,7 @@ const SpecificForm = () => {
                 >
                   <div className="mb-4">
                     <p className="font-custom text-2xl">{submission.content}</p>
-                    <p>{submission.createdAt}</p>
+                    <p>Submitted On: {submission.createdAt}</p>
                   </div>
                 </div>
               ))}

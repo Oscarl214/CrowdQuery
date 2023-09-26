@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from '../components/NavBar';
+import Nav from '../../components/NavBar';
 import { Typography } from '@material-tailwind/react';
 
 import HWSVG2 from './HWSVG2.svg';
@@ -13,6 +13,7 @@ import {
 } from 'react-icons/pi';
 
 const Rules = () => {
+  //This page serves the purpose to explain to the user how the app works
   return (
     <div className="min-h-screen bg-cover bg-no-repeat bg-center font-custom bg-background">
       <Nav />

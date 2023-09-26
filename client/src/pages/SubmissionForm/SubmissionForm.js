@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../utils/AuthContext';
+import { AuthContext } from '../../utils/AuthContext/AuthContext';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
-import { FORM_QUERY } from '../utils/queries';
-import { ADD_SUBMISSION } from '../utils/mutations';
+import { FORM_QUERY } from '../../utils/queries';
+import { ADD_SUBMISSION } from '../../utils/mutations';
 import SVG from './S-SVG.svg';
 import { Button } from 'flowbite-react';
 

@@ -1,22 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import Auth from '../utils/auth';
+import Auth from '../../utils/auth';
 import { Navigate } from 'react-router-dom';
-import Nav from '../components/NavBar';
+import Nav from '../../components/NavBar';
 
 import DBSVG from './DB-BG.svg';
-import RecentForm from '../components/MostRecentForm';
+import RecentForm from '../../components/MostRecentForm';
 
 import { FaPeopleGroup } from 'react-icons/fa6';
 
-import { useQuery } from '@apollo/client';
-import { ADMINISTRATOR_QUERY } from '../utils/queries';
-import { UserContext } from '../utils/adminContext';
-
-import { gsap } from 'gsap';
-
+//My Dashboard Holder that contains my Nav and my Recent Form Component
 const DashBoard = () => {
-  const { data: userData } = useQuery(ADMINISTRATOR_QUERY);
-
+  //My Dashboard checks if user is not logged in than navigate to the login page
   if (!Auth.loggedIn()) {
     return <Navigate to="/login" />;
   }

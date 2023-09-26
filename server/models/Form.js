@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 
 const { Schema, model } = require('mongoose');
 
+//My Form Schema with a title, description, createdAt,and url field
+//and a submissions array field that references the Submission Schema
+
 const formSchema = new Schema(
   {
     title: {
@@ -19,10 +22,6 @@ const formSchema = new Schema(
       default: Date.now,
       get: (date) => date.toISOString().split('T')[0],
     },
-    // administratorCode: {
-    //   type: String,
-    //   required: true,
-    // },
     url: {
       type: String,
       unique: true,

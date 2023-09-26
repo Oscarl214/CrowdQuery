@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import ActiveForm from '../components/ActiveForm';
+import ActiveForm from '../../components/ActiveForm';
 
 import { FaPeopleGroup } from 'react-icons/fa6';
 
-import Nav from '../components/NavBar';
-import DBSVG from './DB-BG.svg';
-import FormButton from '../components/FormButton';
+import Nav from '../../components/NavBar';
+import DBSVG from '../DashBoard/DB-BG.svg';
+import FormButton from '../../components/FormButton';
 
+//My Forms page serves to show the Form Button and the admins active forms
 const Forms = () => {
   return (
     <div

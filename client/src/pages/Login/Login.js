@@ -1,44 +1,45 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import Auth from '../utils/auth';
-import { ADD_ADMINISTRATOR } from '../utils/mutations';
-import Nav from '../components/NavBar';
+import { Link } from 'react-router-dom';
+import { LOGIN } from '../../utils/mutations';
+import Auth from '../../utils/auth';
+
+import BGSVG from './BG_Login.svg';
+
 import { FaPeopleGroup } from 'react-icons/fa6';
-import SUBGV from './Sign-Up-BG.svg';
+import Nav from '../../components/NavBar';
 
-function Signup(props) {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+function Login(props) {
+  //Here im using useState to create an empty initial formState
+  const [formState, setFormState] = useState({ email: '', password: '' });
 
-  const [addAdministrator, { error, data }] = useMutation(ADD_ADMINISTRATOR);
+  //Using my login mutation with the useMutation method
+  const [login, { error }] = useMutation(LOGIN);
+
+  //A handle Change event function that takes in the inputted values
+  // and passes it in to the formState
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { email, password, value } = event.target;
     setFormState({
       ...formState,
-      [name]: value,
+      [email]: value,
+      [password]: value,
     });
   };
 
+  //A handleForm Submit that waits for the login mutation with the newly formState values of email and password
+  //then uses the token returned to use with the auth login function to log the user in
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log('form state', formState);
-
     try {
-      const { data } = await addAdministrator({
-        variables: {
-          ...formState,
-        },
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
       });
-
-      Auth.login(data.addAdministrator.token);
-      window.location.href = '/';
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
   };
 
@@ -46,7 +47,7 @@ function Signup(props) {
     <div
       className=""
       style={{
-        backgroundImage: `url(${SUBGV})`,
+        backgroundImage: `url(${BGSVG})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
       }}
@@ -54,38 +55,17 @@ function Signup(props) {
       <Nav />
       <div className="flex flex-col items-center justify-center h-screen ">
         <div className="">
-          <FaPeopleGroup className=" text-4xl md:text-8xl text-accent animate-pulse" />
+          <FaPeopleGroup className=" text-4xl md:text-8xl text-primary animate-pulse" />
         </div>
-        <h1
-          className="text-7xl text-secondary
-         font-custom font-bold text-center mb-6 color-yellow "
-        >
-          SIGN UP
+        <h1 className="text-7xl text-text font-custom font-bold text-center mb-6 color-yellow ">
+          Sign In
         </h1>
         <h3 className="text-2xl text-center mb-6 text-text font-custom">
-          Crowd Query Protects your Information!
+          Sign in to your Free Crowd Query account.
         </h3>
 
         <div className="container w-full max-w-md p-5 rounded-lg shrink-1 bg-secondary md:bg-secondary">
           <form onSubmit={handleFormSubmit} className="mt-4">
-            <div className="flex flex-col mb-4">
-              <input
-                placeholder="Name"
-                required
-                name="name"
-                type="name"
-                id="name"
-                value={formState.name}
-                onChange={handleChange}
-                className="border border-blue-300 p-2 mt-2 rounded-md "
-              />
-              <label
-                className="text-white text-lg after:content-['*'] after:ml-0.5 after:text-red-500"
-                htmlFor="UserName"
-              >
-                Name
-              </label>
-            </div>
             <div className="flex flex-col mb-4">
               <input
                 placeholder="youremail@test.com"
@@ -93,13 +73,12 @@ function Signup(props) {
                 name="email"
                 type="email"
                 id="email"
-                value={formState.email}
                 onChange={handleChange}
                 className="border border-blue-300 p-2 mt-2 rounded-md"
               />
               <label
                 htmlFor="pwd"
-                className="text-lg text-text font-custom font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
+                className="text-lg text-text font-custom font-bold"
               >
                 Email
               </label>
@@ -111,13 +90,12 @@ function Signup(props) {
                 name="password"
                 type="password"
                 id="pwd"
-                value={formState.password}
                 onChange={handleChange}
                 className="border border-blue-300 p-2 mt-2 rounded-md"
               />
               <label
                 htmlFor="pwd"
-                className="text-lg text-text font-custom font-bold after:content-['*'] after:ml-0.5 after:text-red-500"
+                className="text-lg text-text font-custom font-bold"
               >
                 Password
               </label>
@@ -125,7 +103,7 @@ function Signup(props) {
             {error ? (
               <div>
                 <p className="text-red-500">
-                  User already exist, Please Sign In
+                  The provided credentials are incorrect
                 </p>
               </div>
             ) : null}
@@ -134,14 +112,14 @@ function Signup(props) {
                 type="submit"
                 className="bg-accent text-text py-2 px-4 rounded hover:bg-primary hover:text-accent text-bold font-custom"
               >
-                Sign Up
+                Sign In
               </button>
               <div>
                 <Link
-                  to="/login"
+                  to="/signup"
                   className="bg-primary text-text py-2 px-4 rounded hover:bg-accent hover:text-text ml-4 font-custom"
                 >
-                  Have An Account? Log In
+                  Create Account
                 </Link>
               </div>
             </div>
@@ -152,4 +130,4 @@ function Signup(props) {
   );
 }
 
-export default Signup;
+export default Login;
