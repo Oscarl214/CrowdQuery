@@ -149,6 +149,32 @@ const resolvers = {
         throw new Error('Failed to add Submission: ' + error.message);
       }
     },
+    removeForm: async (parent, { formId }, context) => {
+      if (context.administrator) {
+        try {
+          const form = await Form.findById(formId);
+          if (!form) {
+            throw new ApolloError('Form not found', 'NOT_FOUND');
+          }
+          const deletedForm = await Form.deleteOne({ _id: formId });
+
+          if (deletedForm.deletedCount === 1) {
+            await Administrator.findByIdAndUpdate(
+              context.administrator._id,
+              { $pull: { forms: formId } },
+              { new: true }
+            );
+            return 'Form deleted successfully';
+          } else {
+            throw new ApolloError('Form not found', 'NOT_FOUND');
+          }
+        } catch (error) {
+          throw new ApolloError('Error deleting post', 'INTERNAL_SERVER_ERROR');
+        }
+      } else {
+        throw new AuthenticationError('Not logged in');
+      }
+    },
   },
 };
 

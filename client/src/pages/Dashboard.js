@@ -11,6 +11,9 @@ import { FaPeopleGroup } from 'react-icons/fa6';
 import { useQuery } from '@apollo/client';
 import { ADMINISTRATOR_QUERY } from '../utils/queries';
 import { UserContext } from '../utils/adminContext';
+
+import { gsap } from 'gsap';
+
 const DashBoard = () => {
   const { data: userData } = useQuery(ADMINISTRATOR_QUERY);
 

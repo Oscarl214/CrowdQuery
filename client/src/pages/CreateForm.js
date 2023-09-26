@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useMutation, useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
@@ -12,9 +12,19 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiCopy } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
+import { gsap } from 'gsap/';
+
 const CreateForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    gsap.fromTo(
+      '.anim',
+      { y: 400, opacity: 0 },
+      { x: 0, y: 0, opacity: 1, duration: 1.5, stagger: 0.15 }
+    );
+  }, []);
 
   const [addForm, { error }] = useMutation(ADD_FORM, {
     update(cache, { data: { addForm } }) {
@@ -105,12 +115,8 @@ const CreateForm = () => {
   } else {
     displayContent = (
       <div>
-        <div className="flex justify-between items-center">
-          <Nav />
-          <FaPeopleGroup className=" text-4xl md:text-8xl text-text my-3 mr-4" />
-        </div>
-        <div class="min-h-screen flex items-center justify-center">
-          <div class=" max-w-5xl w-full p-6 bg-white rounded-lg shadow-lg">
+        <div className="min-h-screen flex items-center justify-center">
+          <div class=" max-w-5xl w-full p-6 bg-white rounded-lg shadow-lg anim">
             <div class="flex justify-center mb-8 font-custom">
               <FaPeopleGroup className=" text-4xl md:text-8xl  my-3 mr-4 text-primary" />
             </div>
@@ -123,6 +129,7 @@ const CreateForm = () => {
                 <input
                   type="text"
                   id="title"
+                  required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
@@ -137,6 +144,7 @@ const CreateForm = () => {
                 <label htmlFor="description">Description:</label>
                 <textarea
                   id="description"
+                  required
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
@@ -169,6 +177,7 @@ const CreateForm = () => {
         className="min-h-screen bg-cover bg-no-repeat bg-center"
         style={{ backgroundImage: `url(${DBSVG})` }}
       >
+        <Nav />
         {displayContent} {}
       </div>
     </div>

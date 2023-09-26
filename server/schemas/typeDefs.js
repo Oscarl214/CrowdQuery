@@ -40,6 +40,7 @@ const typeDefs = gql`
     addAdministrator(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addForm(title: String!, description: String!): Form
+    removeForm(formId: ID!): String
     addSubmission(formId: ID!, content: String!): Submission
   }
 `;

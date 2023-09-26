@@ -106,7 +106,7 @@ const SubmissionForm = () => {
       <div className="w-full max-w-5xl p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8  dark:border-gray-700">
         <div className="flex flex-col items-center">
           <form onSubmit={handleSubmit} className="flex flex-col w-full">
-            <p className="font-custom text-lg">
+            <p className="font-custom text-2xl">
               Someone wants your Feedback! Your response is completely
               anonymous!
             </p>
@@ -146,9 +146,8 @@ const SubmissionForm = () => {
       <div className="w-full max-w-5xl p-4 text-center bg-background border border-gray-200 rounded-lg shadow sm:p-8">
         <div className="flex flex-col items-center">
           {' '}
-          {/* Center horizontally and vertically */}
           <h5 className="mb-2 text-7xl font-bold text-text">{title}</h5>
-          <p className="mb-5 text-text text-5xl ">{description}</p>
+          <p className="mb-5 text-gray-300 text-5xl ">{description}</p>
           <div>{formContent}</div>
         </div>
       </div>

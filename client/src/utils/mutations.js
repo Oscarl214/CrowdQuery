@@ -48,3 +48,9 @@ export const ADD_SUBMISSION = gql`
     }
   }
 `;
+
+export const REMOVE_FORM = gql`
+  mutation removeForm($formId: ID!) {
+    removeForm(formId: $formId)
+  }
+`;

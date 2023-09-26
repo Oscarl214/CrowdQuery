@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { useQuery } from '@apollo/client';
 import { ADMINISTRATOR_QUERY } from '../utils/queries';
@@ -6,8 +6,18 @@ import { ADMINISTRATOR_QUERY } from '../utils/queries';
 import { LuArrowDownRightFromCircle } from 'react-icons/lu';
 import FormButton from './FormButton';
 import { UserContext } from '../utils/adminContext';
+import { gsap } from 'gsap';
+
 const RecentForm = () => {
   const { loading, data, error, refetch } = useQuery(ADMINISTRATOR_QUERY);
+
+  useEffect(() => {
+    gsap.fromTo(
+      '.cards',
+      { x: 400, opacity: 0 },
+      { x: 0, y: 0, opacity: 1, duration: 1.5, stagger: 0.15 }
+    );
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching posts: {error.message}</p>;
@@ -40,7 +50,7 @@ const RecentForm = () => {
     displayContent = sortedForms.map((form) => (
       <div
         key={form._id}
-        className="bg-white rounded-lg shadow-2xl md:flex mb-4 border-primary border-6"
+        className="bg-white rounded-lg shadow-2xl md:flex mb-4 border-primary border-6 cards"
       >
         <LuArrowDownRightFromCircle className="text-7xl " />
         <div className="p-6">

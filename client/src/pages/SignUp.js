@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_ADMINISTRATOR } from '../utils/mutations';
-
+import Nav from '../components/NavBar';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import SUBGV from './Sign-Up-BG.svg';
 
@@ -51,16 +51,17 @@ function Signup(props) {
         backgroundRepeat: 'no-repeat',
       }}
     >
+      <Nav />
       <div className="flex flex-col items-center justify-center h-screen ">
+        <div className="">
+          <FaPeopleGroup className=" text-4xl md:text-8xl text-accent animate-pulse" />
+        </div>
         <h1
-          className="text-7xl text-secondaryt
+          className="text-7xl text-secondary
          font-custom font-bold text-center mb-6 color-yellow "
         >
-          CROWD QUERY
+          SIGN UP
         </h1>
-        <div className="">
-          <FaPeopleGroup className=" text-4xl md:text-8xl text-text animate-pulse" />
-        </div>
         <h3 className="text-2xl text-center mb-6 text-text font-custom">
           Crowd Query Protects your Information!
         </h3>

@@ -45,14 +45,14 @@ function Login(props) {
     >
       <Nav />
       <div className="flex flex-col items-center justify-center h-screen ">
-        <h1 className="text-7xl text-primary font-custom font-bold text-center mb-6 color-yellow ">
-          CROWD QUERY
-        </h1>
         <div className="">
-          <FaPeopleGroup className=" text-4xl md:text-8xl text-text animate-pulse" />
+          <FaPeopleGroup className=" text-4xl md:text-8xl text-primary animate-pulse" />
         </div>
+        <h1 className="text-7xl text-text font-custom font-bold text-center mb-6 color-yellow ">
+          Sign In
+        </h1>
         <h3 className="text-2xl text-center mb-6 text-text font-custom">
-          GET <a className="text-accent">INSTANT</a> FEEDBACK!
+          Sign in to your Free Crowd Query account.
         </h3>
 
         <div className="container w-full max-w-md p-5 rounded-lg shrink-1 bg-secondary md:bg-secondary">

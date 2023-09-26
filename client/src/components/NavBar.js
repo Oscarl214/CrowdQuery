@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import { FaFileWaveform } from 'react-icons/fa6';
 import { RiDashboardLine } from 'react-icons/ri';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { IoIosArrowDropdown } from 'react-icons/io';
+import { gsap } from 'gsap';
 
 function Nav() {
   const location = useLocation();
@@ -54,7 +55,7 @@ function Nav() {
                 </h2>
               </li>
             )}
-            {location.pathname !== '/Profile' && (
+            {/* {location.pathname !== '/Profile' && (
               <li className="ml-4">
                 <Link
                   to="/Profile"
@@ -66,7 +67,7 @@ function Nav() {
                   Profile
                 </h2>
               </li>
-            )}
+            )} */}
           </ul>
           <div className="mb-3">
             <a
