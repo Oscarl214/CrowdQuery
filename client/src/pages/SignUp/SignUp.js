@@ -83,9 +83,9 @@ function Signup(props) {
             and <a className="text-black">anonymous</a> Feedback!
           </h1>
           <p className="text-gray-300 text-3xl mt-6 ">
-            Collect real and honest feedback from anyone.
+            Collect real and honest feedback.
           </p>
-          <p className="text-gray-300 text-3xl">
+          <p className="text-gray-300 text-3xl mt-2">
             Instantly start collecting information from employees, friends,
             co-workers,
           </p>
