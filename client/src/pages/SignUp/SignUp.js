@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
@@ -7,7 +7,19 @@ import Nav from '../../components/NavBar';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import SUBGV from './Sign-Up-BG.svg';
 
+import SUBGV2 from './SignUp-2.svg';
+import Footer from '../Footer';
+import gsap from 'gsap';
+
 function Signup(props) {
+  useEffect(() => {
+    gsap.fromTo(
+      '.image',
+      { y: 400, opacity: 0 },
+      { x: 0, y: 0, opacity: 1, duration: 1.5, stagger: 0.15, delay: 1 }
+    );
+  }, []);
+
   //Setting a formState for my Sign Up Form, initial state is the fields
   //being blanked
   const [formState, setFormState] = useState({
@@ -186,6 +198,21 @@ function Signup(props) {
               </div>
             </form>
           </div>
+        </div>
+      </div>
+      <div
+        className=""
+        style={{
+          backgroundImage: `url(${SUBGV2})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="flex flex-col items-center justify-center h-screen">
+          <h2 className="text-7xl text-gray-300 font-semibold mb-8">
+            Check the latest submissions via your DashBoard
+          </h2>
+          <img src="./Dashboard.png" className="image"></img>
         </div>
       </div>
     </div>

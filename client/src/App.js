@@ -21,7 +21,7 @@ import SubmissionForm from './pages/SubmissionForm/SubmissionForm';
 import { AuthProvider } from './utils/AuthContext/AuthContext';
 import SpecificForm from './components/SpecificForm';
 import Rules from './pages/Rules/Rules';
-
+import Footer from './pages/Footer';
 //httpLink: Creating an HTTP link to the GraphQL server endpoint (/graphql).
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -68,6 +68,7 @@ function App() {
                 element={<SpecificForm />}
               />
             </Routes>
+            <Footer />
           </div>
         </AuthProvider>
       </Router>

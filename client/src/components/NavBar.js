@@ -85,7 +85,7 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex items-center">
+        <ul className="flex items-center bg-background">
           <li className="ml-3 font-custom text-3xl">
             <Link
               to="/signup"
@@ -117,7 +117,7 @@ function Nav() {
 
   return (
     <header>
-      <nav>
+      <nav className="bg-background">
         <div className="block">
           <button onClick={handleMobileMenuToggle} className="text-white">
             <IoIosArrowDropdown className=" text-4xl md:text-8xl text-text animate-pulse  m-4" />

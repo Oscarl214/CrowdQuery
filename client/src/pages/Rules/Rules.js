@@ -12,7 +12,7 @@ import {
   PiNumberSquareSixLight,
 } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
-
+import Footer from '../Footer';
 const Rules = () => {
   //This page serves the purpose to explain to the user how the app works
   return (
@@ -23,16 +23,18 @@ const Rules = () => {
         style={{ backgroundImage: `url(${HWSVG2})` }}
       >
         <div className="flex items-center justify-center flex-wrap w-full p-4 text-center rounded-lg shadow mt-5 ">
-          <h2 className="mb-2 text-5xl font-bold text-white mr-8">
-            How does Crowd Query Work?
-            <p className="mb-5  text-gray-300 text-2xl mt-4">
-              Start collecting suggestions with just 3 easy steps!
-            </p>
-          </h2>
-
           <div className="flex-col justify-start items-start m-8">
             <ul>
               <li>
+                <li>
+                  {' '}
+                  <h2 className="mb-2 text-6xl font-bold text-white mr-8">
+                    How does Crowd Query Work?
+                    <p className="mb-5  text-gray-300 text-2xl mt-4">
+                      Start collecting suggestions with just 3 easy steps!
+                    </p>
+                  </h2>
+                </li>
                 <div>
                   <div>
                     <PiNumberSquareOne className="text-text text-4xl " />

@@ -9,24 +9,14 @@ import BGSVG from './BG_Login.svg';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import Nav from '../../components/NavBar';
 
+import Footer from '../Footer';
+
 function Login(props) {
   //Here im using useState to create an empty initial formState
   const [formState, setFormState] = useState({ email: '', password: '' });
 
   //Using my login mutation with the useMutation method
   const [login, { error }] = useMutation(LOGIN);
-
-  //A handle Change event function that takes in the inputted values
-  // and passes it in to the formState
-
-  const handleChange = (event) => {
-    const { email, password, value } = event.target;
-    setFormState({
-      ...formState,
-      [email]: value,
-      [password]: value,
-    });
-  };
 
   //A handleForm Submit that waits for the login mutation with the newly formState values of email and password
   //then uses the token returned to use with the auth login function to log the user in
@@ -41,6 +31,17 @@ function Login(props) {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  //A handle Change event function that takes in the inputted values
+  // and passes it in to the formState
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
   return (
