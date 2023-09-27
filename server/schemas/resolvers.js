@@ -25,11 +25,8 @@ const resolvers = {
     //Form query by ID, this query lets me find information about a specific form by providing the ID
     //as a variable
     form: async (parent, { formId }, context) => {
-      if (context.administrator) {
-        const form = await Form.findById(formId).populate('submissions');
-        return form;
-      }
-      throw new AuthenticationError('Not logged in');
+      const form = await Form.findById(formId).populate('submissions');
+      return form;
     },
 
     //Extra Queries I can use for further development

@@ -137,11 +137,14 @@ const SubmissionForm = () => {
       style={{ backgroundImage: `url(${SVG})` }}
     >
       {loggedIn() ? (
-        <Link to="/forms">
-          <button className="text-white bg-gradient-to-r from-primary via-accent-500 to-accent hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300  shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-custom font-bold rounded-lg text-sm px-5 py-2.5 text-center mb-2 mr-6">
-            Go Back
-          </button>
-        </Link>
+        <div className="flex-col justify-center items-center">
+          <h1 className=" text-gray-300 text-6xl">This is a Admin View</h1>
+          <Link to="/forms">
+            <button className="text-white text-center bg-gradient-to-r from-primary via-accent-500 to-accent hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300  shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-custom font-bold rounded-lg text-sm px-5 py-2.5 mb-2 mr-6">
+              Go Back
+            </button>
+          </Link>
+        </div>
       ) : null}
       <div className="w-full max-w-5xl p-4 text-center bg-background border border-gray-200 rounded-lg shadow sm:p-8">
         <div className="flex flex-col items-center">
