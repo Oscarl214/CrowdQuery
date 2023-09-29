@@ -76,6 +76,7 @@ function Signup(props) {
     >
       <Nav />
       <div className="flex flex-column justify-evenly items-center font-custom flex-wrap">
+        <FaPeopleGroup className=" text-9xl text-white " />
         <div className="text-center mt-4">
           <h1 className="text-7xl text-black font-bold">Free, easy,</h1>
           <h1 className="text-7xl text-white font-bold">
