@@ -14,7 +14,7 @@ Google Forms is a free solution, but my sister still faced the issue that partic
 
 Ex:
 
-![GoogleFormView](./images/Google-View.png)
+![GoogleFormView](./client/public/Google-View.png)
 
 CrowdQuery works to solve that problem as it is completely anonymous and gets rid of the possibility of form recipients shying away from submitting feedback.
 
@@ -50,19 +50,19 @@ This application was developed by the following contributors:
 ## UI
 
 1. Sign Up Page
-   ![SignUpPage](./images/Sign-Up-Page.png)
+   ![SignUpPage](./client/public/Sign-Up-Page.png)
 
 2. How It Works Page
-   ![HowItWorksPage](./images/Instructions.png)
+   ![HowItWorksPage](./client/public/Instructions.png)
 
 3. DashBoard
-   ![Dashboard](/images/Dashboard-.png)
+   ![Dashboard](./client/public/Dashboard-.png)
 
 4. Create Form Page
-   ![Creating a Form](/images/Create-Form.png)
+   ![Creating a Form](./client/public/Create-Form.png)
 
 5. User View Form Page
-   ![UserView](/images/Form-View.png)
+   ![UserView](./client/public/Form-View.png)
 
 ## Technologies
 
