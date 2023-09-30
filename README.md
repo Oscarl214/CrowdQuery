@@ -14,7 +14,7 @@ Google Forms is a free solution, but my sister still faced the issue that partic
 
 Ex:
 
-![GoogleFormView](./client/public/Google-View.png)
+![GoogleFormView](./client/public/Goole-View.png)
 
 CrowdQuery works to solve that problem as it is completely anonymous and gets rid of the possibility of form recipients shying away from submitting feedback.
 
