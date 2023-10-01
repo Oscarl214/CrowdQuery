@@ -75,8 +75,8 @@ function Signup(props) {
       }}
     >
       <Nav />
-      <div className="flex flex-column justify-evenly items-center font-custom flex-wrap">
-        <FaPeopleGroup className=" text-9xl text-white " />
+      <div className="flex flex-column justify-evenly items-center font-custom flex-wrap m-5">
+        <FaPeopleGroup className=" text-9xl text-white  " />
         <div className="text-center mt-4">
           <h1 className="text-7xl text-black font-bold">Free, easy,</h1>
           <h1 className="text-7xl text-white font-bold">
@@ -94,7 +94,7 @@ function Signup(props) {
             or anyone else using an anonymous crowd query form.
           </p>
           <div>
-            <h2 className="text-6xl text-black font-bold mt-6">
+            <h2 className="text-6xl text-black font-bold mt-8">
               How Does it Work?
             </h2>
             <Link to="/Rules">
@@ -210,7 +210,7 @@ function Signup(props) {
         }}
       >
         <div className="flex flex-col items-center justify-center h-screen">
-          <h2 className="text-7xl text-gray-300 font-semibold mb-8">
+          <h2 className="text-5xl text-gray-300 font-semibold m-4">
             Check the latest submissions via your DashBoard
           </h2>
           <img src="./Dashboard.png" className="image"></img>
